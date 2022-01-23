@@ -6,7 +6,7 @@ Esse é um script simples que lê os dados enviados pelos nobreaks NHS com inter
 python3 nhs2mqtt.py config.yaml  
 ```
 
-É possível usar o script sem um servidor mqtt bastando remover toda a seção "mqtt" da configuração (será necessário habilitar o debug para ver os valores no console.
+É possível usar o script sem um servidor mqtt bastando remover toda a seção "mqtt" da configuração (será necessário habilitar o debug para ver os valores no console).
 
 ## Utilizando no Home Assistant
 
