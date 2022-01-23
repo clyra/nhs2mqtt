@@ -7,9 +7,6 @@ import paho.mqtt.client as mqtt #import the client1
 import yaml
 
 
-s = serial.Serial('/dev/ttyACM0')
-state = 'UNKNOW'
-
 class MyMQTT:
 
     def __init__(self, host, port, topic, user="", password=""):
@@ -91,10 +88,10 @@ class NHS:
         read a line
         '''
         line = []
-        msg = s.read()
+        msg = self.serial.read()
         while (msg != b'\xff'):
             line.append(msg)
-            msg = s.read()
+            msg = self.serial.read()
         self.counter +=1
         if len(line) == 20:
             # hopefully a dataframe
@@ -210,14 +207,3 @@ if __name__ == "__main__":
     mynhs = NHS(cfg['serial']['port'], mqtt_client, cfg.get('mqtt', {}).get('rate', 20), cfg['serial'].get('debug', False))
     mynhs.run_forever()
 
-    sys.exit()
-
-    loop = asyncio.get_event_loop()
-    loop.add_reader(s, test_serial, mqtt_client)
-    try:
-        loop.run_forever()
-    except KeyboardInterrupt:
-        pass
-    finally:
-        loop.close()
-        client.loop_stop()
