@@ -207,7 +207,7 @@ if __name__ == "__main__":
         mqtt_client = None
 
 
-    mynhs = NHS(cfg['serial']['port'], mqtt_client, cfg['mqtt'].get('rate', 20), cfg['serial'].get('debug', False))
+    mynhs = NHS(cfg['serial']['port'], mqtt_client, cfg.get('mqtt', {}).get('rate', 20), cfg['serial'].get('debug', False))
     mynhs.run_forever()
 
     sys.exit()
